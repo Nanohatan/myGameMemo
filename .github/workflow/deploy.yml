@@ -1,0 +1,9 @@
+- name: Checkout mygamememo
+  uses: actions/checkout@v4
+
+- name: Checkout private game
+  uses: actions/checkout@v4
+  with:
+    repository: Nanohatan/GameSample
+    token: ${{ secrets.PRIVATE_GAME_TOKEN }}
+    path: _game
