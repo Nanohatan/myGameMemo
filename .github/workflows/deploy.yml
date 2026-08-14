@@ -31,6 +31,12 @@ jobs:
           repository: Nanohatan/GameSample
           token: ${{ secrets.PRIVATE_GAME_TOKEN }}
           path: _game
+      - name: Copy game assets
+        run: |
+          mkdir -p static/Assets/{Icons,Character}
+
+          cp -r _game/Asset/Icons/. static/Assets/Icons/
+          cp -r _game/Asset/Character/. static/Assets/Character/
 
       - name: Generate memo
         run: |

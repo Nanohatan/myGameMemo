@@ -7,7 +7,13 @@
     "Slot": 2,
     "Level": 30,
     "Enhancement": 5,
-    "Icon": "ExtResource(\"2\")",
+    "Icon": {
+      "reference": "ExtResource(\"2\")",
+      "type": "Texture2D",
+      "uid": "uid://coi4m04s52byl",
+      "path": "Asset/Icons/Equipment/equipment_device.svg",
+      "id": "2"
+    },
     "RivBonus": 100,
     "SupportBonus": 80
   },
@@ -19,7 +25,13 @@
     "Slot": 1,
     "Level": 35,
     "Enhancement": 6,
-    "Icon": "ExtResource(\"2\")",
+    "Icon": {
+      "reference": "ExtResource(\"2\")",
+      "type": "Texture2D",
+      "uid": "uid://16s0ajonqvec",
+      "path": "Asset/Icons/Equipment/equipment_armor.svg",
+      "id": "2"
+    },
     "DefenseBonus": 190
   },
   {
@@ -30,7 +42,13 @@
     "Slot": 2,
     "Level": 20,
     "Enhancement": 1,
-    "Icon": "ExtResource(\"2\")",
+    "Icon": {
+      "reference": "ExtResource(\"2\")",
+      "type": "Texture2D",
+      "uid": "",
+      "path": "Asset/Icons/Equipment/equipment_device.svg",
+      "id": "2"
+    },
     "RivBonus": 84,
     "AttackBonus": 10,
     "DefenseBonus": 18,
@@ -44,7 +62,13 @@
     "Slot": 1,
     "Level": 22,
     "Enhancement": 1,
-    "Icon": "ExtResource(\"2\")",
+    "Icon": {
+      "reference": "ExtResource(\"2\")",
+      "type": "Texture2D",
+      "uid": "",
+      "path": "Asset/Icons/Equipment/equipment_armor.svg",
+      "id": "2"
+    },
     "RivBonus": 72,
     "AttackBonus": 8,
     "DefenseBonus": 108,
@@ -58,7 +82,13 @@
     "Slot": 0,
     "Level": 24,
     "Enhancement": 2,
-    "Icon": "ExtResource(\"2\")",
+    "Icon": {
+      "reference": "ExtResource(\"2\")",
+      "type": "Texture2D",
+      "uid": "",
+      "path": "Asset/Icons/Equipment/equipment_weapon.svg",
+      "id": "2"
+    },
     "RivBonus": 96,
     "AttackBonus": 124,
     "DefenseBonus": 12,
@@ -72,7 +102,13 @@
     "Slot": 1,
     "Level": 28,
     "Enhancement": 4,
-    "Icon": "ExtResource(\"2\")",
+    "Icon": {
+      "reference": "ExtResource(\"2\")",
+      "type": "Texture2D",
+      "uid": "uid://16s0ajonqvec",
+      "path": "Asset/Icons/Equipment/equipment_armor.svg",
+      "id": "2"
+    },
     "DefenseBonus": 90,
     "SupportBonus": 120
   },
@@ -84,7 +120,13 @@
     "Slot": 0,
     "Level": 32,
     "Enhancement": 5,
-    "Icon": "ExtResource(\"2\")",
+    "Icon": {
+      "reference": "ExtResource(\"2\")",
+      "type": "Texture2D",
+      "uid": "uid://btdkt4gwcyg13",
+      "path": "Asset/Icons/Equipment/equipment_weapon.svg",
+      "id": "2"
+    },
     "RivBonus": 150,
     "AttackBonus": 130
   },
@@ -96,7 +138,13 @@
     "Slot": 2,
     "Level": 34,
     "Enhancement": 6,
-    "Icon": "ExtResource(\"2\")",
+    "Icon": {
+      "reference": "ExtResource(\"2\")",
+      "type": "Texture2D",
+      "uid": "uid://coi4m04s52byl",
+      "path": "Asset/Icons/Equipment/equipment_device.svg",
+      "id": "2"
+    },
     "RivBonus": 180,
     "SupportBonus": 140
   },
@@ -108,7 +156,13 @@
     "Slot": 0,
     "Level": 40,
     "Enhancement": 7,
-    "Icon": "ExtResource(\"2\")",
+    "Icon": {
+      "reference": "ExtResource(\"2\")",
+      "type": "Texture2D",
+      "uid": "uid://btdkt4gwcyg13",
+      "path": "Asset/Icons/Equipment/equipment_weapon.svg",
+      "id": "2"
+    },
     "RivBonus": 120,
     "AttackBonus": 180
   }

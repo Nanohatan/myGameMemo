@@ -18,7 +18,13 @@
     "MaxMental": 120,
     "Stamina": 92,
     "Clearance": "B-03",
-    "Portrait": "ExtResource(\"2_portrait\")",
+    "Portrait": {
+      "reference": "ExtResource(\"2_portrait\")",
+      "type": "Texture2D",
+      "uid": "uid://dh7ptxf75c1nb",
+      "path": "Asset/Character/03_Eiko.png",
+      "id": "2_portrait"
+    },
     "HomePortraitRegion": "Rect2(0.16, 0, 0.68, 0.42)",
     "DetailPortraitRegion": "Rect2(0.08, 0, 0.84, 0.7)",
     "StarCount": 4,
@@ -69,7 +75,13 @@
     "MaxMental": 120,
     "Stamina": 85,
     "Clearance": "B-02",
-    "Portrait": "ExtResource(\"2_portrait\")",
+    "Portrait": {
+      "reference": "ExtResource(\"2_portrait\")",
+      "type": "Texture2D",
+      "uid": "uid://b0hoph0y1jqo8",
+      "path": "Asset/Character/02_Nie.png",
+      "id": "2_portrait"
+    },
     "HomePortraitRegion": "Rect2(0.15, 0, 0.7, 0.43)",
     "DetailPortraitRegion": "Rect2(0.08, 0, 0.84, 0.72)",
     "StarCount": 2,
@@ -108,7 +120,13 @@
     "ContainmentAptitude": "A",
     "Mental": 88,
     "Clearance": "A-03",
-    "Portrait": "ExtResource(\"2_portrait\")",
+    "Portrait": {
+      "reference": "ExtResource(\"2_portrait\")",
+      "type": "Texture2D",
+      "uid": "uid://b6mpmbxe0kamh",
+      "path": "Asset/Character/01_shiyo.png",
+      "id": "2_portrait"
+    },
     "HomePortraitRegion": "Rect2(0.25, 0, 0.5, 0.38)",
     "DetailPortraitRegion": "Rect2(0.18, 0, 0.64, 0.68)",
     "CurrentExp": 0,

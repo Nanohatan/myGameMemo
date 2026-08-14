@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="{{ site.Language.Locale }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ .Params.resource_key }}.jsonのリソースドキュメント">
+    <meta name="theme-color" content="#f7f4ee">
+    <title>{{ .Title }} | {{ site.Title }}</title>
+    <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="site-title" href="{{ site.Home.RelPermalink }}">{{ site.Title }}</a>
+      <nav class="site-nav" aria-label="メインナビゲーション">
+        <a href="{{ .Parent.RelPermalink }}">リソース</a>
+      </nav>
+    </header>
+
+    {{ $records := index hugo.Data.generated.resources .Params.resource_key }}
+    <main class="resource-page">
+      <p class="back-link"><a href="{{ .Parent.RelPermalink }}">← リソース一覧</a></p>
+      <div class="page-heading resource-heading">
+        <p class="eyebrow">Resource docs</p>
+        <h1>{{ .Title }}</h1>
+        <p><code>data/generated/resources/{{ .Params.resource_key }}.json</code></p>
+      </div>
+
+      <p class="resource-summary">{{ len $records }} records</p>
+
+      <div class="record-list">
+        {{ range $index, $record := $records }}
+          <article class="record-card">
+            <header>
+              <span class="record-number">{{ printf "%02d" (add $index 1) }}</span>
+              <h2>{{ with index $record "_source" }}{{ . }}{{ else }}Record {{ add $index 1 }}{{ end }}</h2>
+            </header>
+            <dl class="record-fields">
+              {{ range $key, $value := $record }}
+                {{ if ne $key "_source" }}
+                  {{ $displayValue := printf "%v" $value }}
+                  {{ $isMap := reflect.IsMap $value }}
+                  {{ $isTexture := and $isMap (eq (index $value "type") "Texture2D") }}
+                  {{ $isLong := gt (len $displayValue) 90 }}
+                  <div class="record-field{{ if $isTexture }} field-media{{ else if $isLong }} field-wide{{ end }}">
+                    <dt>{{ $key }}</dt>
+                    <dd>
+                      {{ if $isTexture }}
+                        <div class="texture-resource">
+                          <figure>
+                            <img src="{{ index $value "path" | relURL }}" alt="{{ $key }}: {{ index $record "_source" }}" loading="lazy">
+                          </figure>
+                          <dl class="resource-reference">
+                            {{ range $resourceKey, $resourceValue := $value }}
+                              <div>
+                                <dt>{{ $resourceKey }}</dt>
+                                <dd><code>{{ $resourceValue }}</code></dd>
+                              </div>
+                            {{ end }}
+                          </dl>
+                        </div>
+                      {{ else if $isMap }}
+                        <dl class="resource-reference">
+                          {{ range $resourceKey, $resourceValue := $value }}
+                            <div>
+                              <dt>{{ $resourceKey }}</dt>
+                              <dd><code>{{ $resourceValue }}</code></dd>
+                            </div>
+                          {{ end }}
+                        </dl>
+                      {{ else if hasPrefix $displayValue "Color(" }}
+                        {{ $channels := split (replaceRE `^Color\((.*)\)$` "$1" $displayValue) ", " }}
+                        <span class="inline-swatch" style="--swatch: color(srgb {{ index $channels 0 }} {{ index $channels 1 }} {{ index $channels 2 }} / {{ index $channels 3 }})" aria-hidden="true"></span>
+                        <code>{{ $displayValue }}</code>
+                      {{ else }}
+                        <code>{{ $displayValue }}</code>
+                      {{ end }}
+                    </dd>
+                  </div>
+                {{ end }}
+              {{ end }}
+            </dl>
+          </article>
+        {{ else }}
+          <p class="empty-state">このJSONにはレコードがありません。</p>
+        {{ end }}
+      </div>
+    </main>
+  </body>
+</html>

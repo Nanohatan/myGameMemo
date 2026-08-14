@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="{{ site.Language.Locale }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ .Description }}">
+    <meta name="theme-color" content="#f7f4ee">
+    <title>{{ .Title }} | {{ site.Title }}</title>
+    <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="site-title" href="{{ site.Home.RelPermalink }}">{{ site.Title }}</a>
+      <nav class="site-nav" aria-label="メインナビゲーション">
+        <a href="{{ .RelPermalink }}" aria-current="page">リソース</a>
+      </nav>
+    </header>
+
+    <main class="resource-page">
+      <div class="page-heading">
+        <p class="eyebrow">Resource docs</p>
+        <h1>{{ .Title }}</h1>
+        <p>{{ .Description }}</p>
+      </div>
+
+      <ul class="resource-index" role="list">
+        {{ range .Pages.ByTitle }}
+          {{ $records := index hugo.Data.generated.resources .Params.resource_key }}
+          <li>
+            <a href="{{ .RelPermalink }}">
+              <span>
+                <strong>{{ .Title }}</strong>
+                <code>{{ .Params.resource_key }}.json</code>
+              </span>
+              <span class="record-count">{{ len $records }} records</span>
+            </a>
+          </li>
+        {{ end }}
+      </ul>
+    </main>
+  </body>
+</html>

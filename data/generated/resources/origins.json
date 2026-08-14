@@ -8,7 +8,13 @@
     "MaxLevel": 20,
     "CurrentExp": 0,
     "RequiredExp": 1000,
-    "Portrait": "ExtResource(\"2\")",
+    "Portrait": {
+      "reference": "ExtResource(\"2\")",
+      "type": "Texture2D",
+      "uid": "",
+      "path": "Asset/Character/02_Nie.png",
+      "id": "2"
+    },
     "PortraitRegion": "Rect2(0.08, 0, 0.84, 0.72)",
     "Health": 112,
     "Attack": 750,
@@ -35,7 +41,13 @@
     "MaxLevel": 20,
     "CurrentExp": 0,
     "RequiredExp": 1000,
-    "Portrait": "ExtResource(\"2\")",
+    "Portrait": {
+      "reference": "ExtResource(\"2\")",
+      "type": "Texture2D",
+      "uid": "",
+      "path": "Asset/Character/01_shiyo.png",
+      "id": "2"
+    },
     "PortraitRegion": "Rect2(0.18, 0, 0.64, 0.68)",
     "Health": 145,
     "Attack": 845,

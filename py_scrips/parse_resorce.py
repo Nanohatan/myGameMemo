@@ -3,9 +3,10 @@
 
 Only properties in the ``[resource]`` section are exported. JSON-native Godot
 values (strings, integers, floats, booleans and null) are converted to their
-native JSON representation. Other Godot expressions, such as ExtResource(),
-Rect2(), Color() and typed arrays, are kept as strings so no information is
-lost.
+native JSON representation. Direct references to Texture2D external resources
+are expanded with their type, uid, path and id. Other Godot expressions, such
+as ExtResource(), Rect2(), Color() and typed arrays, are kept as strings so no
+information is lost.
 """
 
 from __future__ import annotations
@@ -19,6 +20,8 @@ from typing import Any, Iterable
 
 
 ASSIGNMENT_RE = re.compile(r"^([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*)$")
+EXT_RESOURCE_REF_RE = re.compile(r'^ExtResource\("([^"]+)"\)$')
+HEADER_ATTRIBUTE_RE = re.compile(r'([A-Za-z_][A-Za-z0-9_]*)="([^"]*)"')
 INTEGER_RE = re.compile(r"^[+-]?\d+$")
 FLOAT_RE = re.compile(
     r"^[+-]?(?:\d+\.\d*|\.\d+|\d+[eE][+-]?\d+|\d+\.\d*[eE][+-]?\d+)$"
@@ -45,6 +48,36 @@ def parse_value(raw_value: str) -> Any:
     if FLOAT_RE.fullmatch(value):
         return float(value)
     return value
+
+
+def parse_ext_resource_header(line: str) -> dict[str, str] | None:
+    """Parse an ``[ext_resource ...]`` declaration into its attributes."""
+    stripped = line.strip()
+    if not stripped.startswith("[ext_resource ") or not stripped.endswith("]"):
+        return None
+    attributes = dict(HEADER_ATTRIBUTE_RE.findall(stripped))
+    return attributes if "id" in attributes else None
+
+
+def resolve_texture_reference(
+    value: Any, ext_resources: dict[str, dict[str, str]]
+) -> Any:
+    """Expand a direct Texture2D ExtResource reference and preserve other values."""
+    if not isinstance(value, str):
+        return value
+    match = EXT_RESOURCE_REF_RE.fullmatch(value)
+    if not match:
+        return value
+    resource = ext_resources.get(match.group(1))
+    if resource is None or resource.get("type") != "Texture2D":
+        return value
+    return {
+        "reference": value,
+        "type": resource["type"],
+        "uid": resource.get("uid", ""),
+        "path": resource.get("path", "").removeprefix("res://"),
+        "id": resource["id"],
+    }
 
 
 def _is_complete_expression(value: str) -> bool:
@@ -79,9 +112,13 @@ def parse_tres(path: Path) -> dict[str, Any]:
     in_resource = False
     pending_key: str | None = None
     pending_parts: list[str] = []
+    ext_resources: dict[str, dict[str, str]] = {}
 
     for line in path.read_text(encoding="utf-8-sig").splitlines():
         stripped = line.strip()
+        ext_resource = parse_ext_resource_header(stripped)
+        if ext_resource is not None:
+            ext_resources[ext_resource["id"]] = ext_resource
         if stripped.startswith("[") and stripped.endswith("]"):
             in_resource = stripped == "[resource]"
             continue
@@ -92,7 +129,9 @@ def parse_tres(path: Path) -> dict[str, Any]:
             pending_parts.append(stripped)
             combined = "\n".join(pending_parts)
             if _is_complete_expression(combined):
-                result[pending_key] = parse_value(combined)
+                result[pending_key] = resolve_texture_reference(
+                    parse_value(combined), ext_resources
+                )
                 pending_key = None
                 pending_parts = []
             continue
@@ -102,7 +141,9 @@ def parse_tres(path: Path) -> dict[str, Any]:
             continue
         key, raw_value = match.groups()
         if _is_complete_expression(raw_value):
-            result[key] = parse_value(raw_value)
+            result[key] = resolve_texture_reference(
+                parse_value(raw_value), ext_resources
+            )
         else:
             pending_key = key
             pending_parts = [raw_value]

@@ -40,6 +40,11 @@ body {
   text-underline-offset: 0.25rem;
 }
 
+.site-nav {
+  display: flex;
+  gap: 1rem;
+}
+
 .site-nav a:hover,
 .site-nav a[aria-current="page"] {
   color: #8f211d;
@@ -70,6 +75,217 @@ body {
 .color-page {
   width: min(100% - 3rem, 72rem);
   margin: 3rem auto 6rem;
+}
+
+.resource-page {
+  width: min(100% - 3rem, 72rem);
+  margin: 3rem auto 6rem;
+}
+
+.resource-index {
+  display: grid;
+  gap: 0.75rem;
+  margin: 3rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.resource-index a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem;
+  border: 1px solid rgb(36 35 31 / 16%);
+  border-radius: 0.75rem;
+  color: inherit;
+  background: rgb(255 255 255 / 38%);
+  text-decoration: none;
+}
+
+.resource-index a:hover {
+  border-color: #8f211d;
+  transform: translateY(-1px);
+}
+
+.resource-index a > span:first-child {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.resource-index code,
+.record-count,
+.resource-summary,
+.back-link {
+  color: #656156;
+  font-size: 0.8rem;
+}
+
+.record-count {
+  white-space: nowrap;
+}
+
+.back-link {
+  margin: 0 0 2rem;
+}
+
+.back-link a {
+  color: inherit;
+  text-underline-offset: 0.25rem;
+}
+
+.resource-heading code {
+  font-size: clamp(0.7rem, 2vw, 0.9rem);
+  overflow-wrap: anywhere;
+}
+
+.resource-summary {
+  margin: 3rem 0 1rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.record-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.record-card {
+  overflow: hidden;
+  border: 1px solid rgb(36 35 31 / 16%);
+  border-radius: 0.75rem;
+  background: rgb(255 255 255 / 38%);
+}
+
+.record-card > header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgb(36 35 31 / 12%);
+}
+
+.record-card h2 {
+  margin: 0;
+  font-size: 1rem;
+  overflow-wrap: anywhere;
+}
+
+.record-number {
+  color: #8f211d;
+  font-family: "Cascadia Code", Consolas, monospace;
+  font-size: 0.75rem;
+}
+
+.record-card dl {
+  margin: 0;
+}
+
+.record-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  gap: 1px;
+  background: rgb(36 35 31 / 8%);
+}
+
+.record-card .record-field {
+  display: grid;
+  align-content: start;
+  gap: 0.35rem;
+  min-width: 0;
+  padding: 0.8rem 1rem;
+  background: rgb(250 248 242 / 96%);
+}
+
+.record-card .field-wide,
+.record-card .field-media {
+  grid-column: 1 / -1;
+}
+
+.record-card dt {
+  color: #656156;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.record-card dd {
+  min-width: 0;
+  margin: 0;
+}
+
+.record-card dd code {
+  font-family: "Cascadia Code", Consolas, monospace;
+  font-size: 0.78rem;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.inline-swatch {
+  display: inline-block;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-right: 0.75rem;
+  border: 1px solid rgb(36 35 31 / 20%);
+  border-radius: 0.3rem;
+  background: var(--swatch);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 18%);
+  vertical-align: middle;
+}
+
+.resource-reference {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0;
+}
+
+.texture-resource {
+  display: grid;
+  grid-template-columns: minmax(8rem, 11rem) minmax(0, 1fr);
+  align-items: center;
+  gap: 1rem;
+}
+
+.texture-resource figure {
+  display: grid;
+  place-items: center;
+  min-height: 9rem;
+  margin: 0;
+  padding: 0.75rem;
+  border: 1px solid rgb(36 35 31 / 10%);
+  border-radius: 0.5rem;
+  background:
+    linear-gradient(45deg, #e9e6de 25%, transparent 25%),
+    linear-gradient(-45deg, #e9e6de 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #e9e6de 75%),
+    linear-gradient(-45deg, transparent 75%, #e9e6de 75%),
+    #f7f4ee;
+  background-position: 0 0, 0 0.5rem, 0.5rem -0.5rem, -0.5rem 0;
+  background-size: 1rem 1rem;
+}
+
+.texture-resource img {
+  display: block;
+  width: 100%;
+  height: 9rem;
+  object-fit: contain;
+}
+
+.record-card .resource-reference > div {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  gap: 0.75rem;
+  padding: 0;
+  border: 0;
+}
+
+.resource-reference dt {
+  color: #8f8a7e;
+  font-size: 0.72rem;
+}
+
+.resource-reference dd {
+  overflow-wrap: anywhere;
 }
 
 .page-heading {
@@ -155,7 +371,8 @@ body {
 @media (max-width: 40rem) {
   .site-header,
   .home,
-  .color-page {
+  .color-page,
+  .resource-page {
     width: min(100% - 2rem, 72rem);
   }
 
@@ -170,6 +387,36 @@ body {
 
   .color-page {
     margin-top: 2rem;
+  }
+
+  .resource-page {
+    margin-top: 2rem;
+  }
+
+  .record-fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .texture-resource {
+    grid-template-columns: 1fr;
+  }
+
+  .texture-resource figure {
+    min-height: 12rem;
+  }
+
+  .texture-resource img {
+    height: 12rem;
+  }
+
+  .resource-index a {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 28rem) {
+  .record-fields {
+    grid-template-columns: 1fr;
   }
 }
 
