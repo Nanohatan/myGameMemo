@@ -1,0 +1,59 @@
+[
+  {
+    "_source": "bureau_armor.tres",
+    "script": "ExtResource(\"1\")",
+    "ItemId": "bureau_armor",
+    "DisplayName": "干渉遮断防護衣",
+    "Description": "低強度の現実干渉を軽減する防具",
+    "Price": 980,
+    "PurchaseLimit": 1,
+    "Icon": "ExtResource(\"2\")",
+    "IsEquipment": true,
+    "Enhancement": 6
+  },
+  {
+    "_source": "clone_blueprint.tres",
+    "script": "ExtResource(\"1\")",
+    "ItemId": "clone_blueprint_1",
+    "DisplayName": "★2 設計書",
+    "Description": "培養棟で使用するクローン設計書",
+    "Price": 600,
+    "PurchaseLimit": 2,
+    "Icon": "ExtResource(\"2\")"
+  },
+  {
+    "_source": "daily_acceleration.tres",
+    "script": "ExtResource(\"1\")",
+    "ItemId": "daily_acceleration",
+    "DisplayName": "1時間加速チケット",
+    "Description": "施設の作業時間を1時間短縮する日次補給品",
+    "Price": 0,
+    "PurchaseLimit": 1,
+    "Icon": "ExtResource(\"2\")",
+    "IsDaily": true
+  },
+  {
+    "_source": "resonance_sensor.tres",
+    "script": "ExtResource(\"1\")",
+    "ItemId": "resonance_sensor",
+    "DisplayName": "位相共鳴観測装置",
+    "Description": "周辺の異常位相を検出する補助装置",
+    "Price": 750,
+    "PurchaseLimit": 1,
+    "Icon": "ExtResource(\"2\")",
+    "IsEquipment": true,
+    "Enhancement": 1
+  },
+  {
+    "_source": "service_rifle.tres",
+    "script": "ExtResource(\"1\")",
+    "ItemId": "service_rifle",
+    "DisplayName": "境界局制式小銃",
+    "Description": "標準規格の実働部隊用主武装",
+    "Price": 1200,
+    "PurchaseLimit": 1,
+    "Icon": "ExtResource(\"2\")",
+    "IsEquipment": true,
+    "Enhancement": 3
+  }
+]

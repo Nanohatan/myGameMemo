@@ -1,0 +1,38 @@
+[
+  {
+    "_source": "daily_explore.tres",
+    "script": "ExtResource(\"1\")",
+    "Title": "境界領域を探索",
+    "Description": "任意のセクターで探索を1回行う",
+    "Current": 0,
+    "Target": 1,
+    "Reward": "作戦記録 ×300",
+    "RewardType": "operation_records",
+    "RewardAmount": 300,
+    "RewardClaimed": false
+  },
+  {
+    "_source": "daily_shop.tres",
+    "script": "ExtResource(\"1\")",
+    "Title": "ショップで物資を購入",
+    "Description": "ショップで任意の商品を1回購入する",
+    "Current": 0,
+    "Target": 1,
+    "Reward": "クレジット ×1,000",
+    "RewardType": "credits",
+    "RewardAmount": 1000,
+    "RewardClaimed": false
+  },
+  {
+    "_source": "user_data.tres",
+    "script": "ExtResource(\"1_script\")",
+    "ActiveFormation": "ExtResource(\"2_formation\")",
+    "Formations": "[ExtResource(\"2_formation\"), ExtResource(\"6_formation2\"), ExtResource(\"7_formation3\")]",
+    "ActiveFormationIndex": 0,
+    "LevelUpRecords": 24,
+    "LevelUpRecordExp": 1000,
+    "EquipmentEnhancementParts": 36,
+    "AdvancedEnhancementParts": 8,
+    "DailyMissions": "[ExtResource(\"4_daily\"), ExtResource(\"3_daily\")]"
+  }
+]

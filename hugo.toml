@@ -1,0 +1,7 @@
+baseURL = "http://localhost:1313/"
+locale = "ja-JP"
+title = "My Game Memo"
+disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT", "404"]
+
+[params]
+  description = "ゲームの記録を残すためのサイト"

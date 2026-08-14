@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="{{ site.Language.Locale }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ site.Params.description }}">
+    <meta name="theme-color" content="#f7f4ee">
+    <title>{{ site.Title }}</title>
+    <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="site-title" href="{{ site.Home.RelPermalink }}" aria-label="ホーム">
+        {{ site.Title }}
+      </a>
+      <nav class="site-nav" aria-label="メインナビゲーション">
+        <a href="{{ "colors/" | relURL }}">カラーコード</a>
+      </nav>
+    </header>
+
+    <main class="home" aria-label="メインコンテンツ"></main>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+[
+  {
+    "_source": "nie_origin.tres",
+    "script": "ExtResource(\"1\")",
+    "DisplayName": "NIE",
+    "OriginCode": "ORIGIN-NIE",
+    "Level": 0,
+    "MaxLevel": 20,
+    "CurrentExp": 0,
+    "RequiredExp": 1000,
+    "Portrait": "ExtResource(\"2\")",
+    "PortraitRegion": "Rect2(0.08, 0, 0.84, 0.72)",
+    "Health": 112,
+    "Attack": 750,
+    "Defense": 840,
+    "Mobility": 0,
+    "Support": 1005,
+    "Observation": 945,
+    "Intellect": 905,
+    "AccumulatedRestorationExp": 24580,
+    "RestorationCount": 7,
+    "CollapsedCloneCount": 6
+  },
+  {
+    "_source": "origin_catalog.tres",
+    "script": "ExtResource(\"1\")",
+    "Origins": "Array[Resource]([ExtResource(\"2\"), ExtResource(\"3\")])"
+  },
+  {
+    "_source": "shiyo_origin.tres",
+    "script": "ExtResource(\"1\")",
+    "DisplayName": "SHIYO",
+    "OriginCode": "ORIGIN-SHIYO",
+    "Level": 0,
+    "MaxLevel": 20,
+    "CurrentExp": 0,
+    "RequiredExp": 1000,
+    "Portrait": "ExtResource(\"2\")",
+    "PortraitRegion": "Rect2(0.18, 0, 0.64, 0.68)",
+    "Health": 145,
+    "Attack": 845,
+    "Defense": 795,
+    "Mobility": 4,
+    "Support": 620,
+    "Observation": 780,
+    "Intellect": 700,
+    "AccumulatedRestorationExp": 0,
+    "RestorationCount": 0,
+    "CollapsedCloneCount": 0
+  }
+]

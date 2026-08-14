@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="{{ site.Language.Locale }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ .Description }}">
+    <meta name="theme-color" content="#f7f4ee">
+    <title>{{ .Title }} | {{ site.Title }}</title>
+    <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="site-title" href="{{ site.Home.RelPermalink }}">{{ site.Title }}</a>
+      <nav class="site-nav" aria-label="メインナビゲーション">
+        <a href="{{ .RelPermalink }}" aria-current="page">カラーコード</a>
+      </nav>
+    </header>
+
+    <main class="color-page">
+      <div class="page-heading">
+        <p class="eyebrow">UI resources</p>
+        <h1>{{ .Title }}</h1>
+        <p>{{ .Description }}</p>
+      </div>
+
+      {{ with index hugo.Data.generated.resources.ui 0 }}
+        <p class="source-note">Source: <code>{{ index . "_source" }}</code></p>
+        <ul class="color-grid" role="list">
+          {{ range $name, $value := . }}
+            {{ if and (ne $name "_source") (ne $name "script") }}
+              {{ $channels := split (replaceRE `^Color\((.*)\)$` "$1" $value) ", " }}
+              <li class="color-card">
+                <div
+                  class="color-swatch"
+                  style="--swatch: color(srgb {{ index $channels 0 }} {{ index $channels 1 }} {{ index $channels 2 }} / {{ index $channels 3 }})"
+                  aria-hidden="true"
+                ></div>
+                <div class="color-info">
+                  <h2>{{ $name }}</h2>
+                  <code>{{ $value }}</code>
+                </div>
+              </li>
+            {{ end }}
+          {{ end }}
+        </ul>
+      {{ else }}
+        <p class="empty-state">カラー情報がまだありません。</p>
+      {{ end }}
+    </main>
+  </body>
+</html>
