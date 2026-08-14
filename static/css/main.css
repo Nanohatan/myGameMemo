@@ -72,6 +72,179 @@ body {
   margin-inline: auto;
 }
 
+.builder-page {
+  width: min(100% - 3rem, 90rem);
+  margin: 3rem auto 6rem;
+}
+
+.builder-heading {
+  max-width: 44rem;
+  margin-bottom: 2.5rem;
+}
+
+.builder-heading h1 {
+  margin: 0;
+  font-size: clamp(2rem, 6vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.builder-heading > p:last-child {
+  margin: 1rem 0 0;
+  color: #656156;
+}
+
+.screen-builder {
+  display: grid;
+  grid-template-columns: minmax(22rem, 1fr) minmax(20rem, 34rem);
+  align-items: start;
+  gap: clamp(1.5rem, 4vw, 4rem);
+}
+
+.builder-controls {
+  min-width: 0;
+}
+
+.builder-size-fields,
+.builder-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.builder-size-fields label,
+.part-fields label {
+  display: grid;
+  gap: 0.35rem;
+  color: #656156;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.builder-size-fields label {
+  grid-template-columns: auto 6rem auto;
+  align-items: center;
+}
+
+.builder-page input,
+.builder-page select,
+.builder-page textarea,
+.builder-page button {
+  min-height: 2.5rem;
+  border: 1px solid rgb(36 35 31 / 24%);
+  border-radius: 0.4rem;
+  color: #24231f;
+  background: #fbf9f3;
+  font: inherit;
+}
+
+.builder-page input,
+.builder-page select,
+.builder-page textarea {
+  width: 100%;
+  padding: 0.55rem 0.65rem;
+}
+
+.builder-page textarea {
+  resize: vertical;
+}
+
+.builder-page button {
+  padding: 0.55rem 0.85rem;
+  cursor: pointer;
+}
+
+.builder-page button:hover {
+  border-color: #8f211d;
+}
+
+.builder-page button:disabled {
+  cursor: default;
+  opacity: 0.4;
+}
+
+.builder-page .download-button {
+  border-color: #24231f;
+  color: #f7f4ee;
+  background: #24231f;
+  font-weight: 700;
+}
+
+.part-editor-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.part-editor {
+  border: 1px solid rgb(36 35 31 / 16%);
+  border-radius: 0.65rem;
+  background: rgb(255 255 255 / 38%);
+}
+
+.part-editor > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.65rem 0.8rem;
+  border-bottom: 1px solid rgb(36 35 31 / 10%);
+}
+
+.part-editor > header span {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.part-editor > header button {
+  min-width: 2rem;
+  min-height: 2rem;
+  padding: 0.2rem;
+}
+
+.part-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  padding: 0.8rem;
+}
+
+.part-text-field {
+  grid-column: 1 / -1;
+}
+
+.builder-preview {
+  position: sticky;
+  top: 1rem;
+  min-width: 0;
+}
+
+.canvas-frame {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  padding: clamp(0.5rem, 2vw, 1rem);
+  border: 1px solid rgb(36 35 31 / 18%);
+  background: #d8d5cd;
+}
+
+#game-screen {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: min(75vh, 60rem);
+  box-shadow: 0 1rem 2.5rem rgb(36 35 31 / 18%);
+  background: #f7f4ee;
+}
+
+#canvas-size-label {
+  margin: 0.65rem 0 0;
+  color: #656156;
+  font-family: "Cascadia Code", Consolas, monospace;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
 .color-page {
   width: min(100% - 3rem, 72rem);
   margin: 3rem auto 6rem;
@@ -376,6 +549,11 @@ body {
     width: min(100% - 2rem, 72rem);
   }
 
+  .builder-page {
+    width: min(100% - 2rem, 90rem);
+    margin-top: 2rem;
+  }
+
   .site-header {
     min-height: 4rem;
   }
@@ -411,6 +589,29 @@ body {
 
   .resource-index a {
     align-items: flex-start;
+  }
+}
+
+@media (max-width: 62rem) {
+  .screen-builder {
+    grid-template-columns: 1fr;
+  }
+
+  .builder-preview {
+    position: static;
+    grid-row: 1;
+    width: min(100%, 34rem);
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 32rem) {
+  .part-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .part-text-field {
+    grid-column: auto;
   }
 }
 

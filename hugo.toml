@@ -1,7 +1,7 @@
-baseURL = "http://localhost:1313/"
+baseURL = "https://nanohatan.github.io/myGameMemo/"
 locale = "ja-JP"
 title = "My Game Memo"
 disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT", "404"]
 
 [params]
-  description = "ゲームの記録を残すためのサイト"
+  description = "自作ゲームの記録を残すためのサイト"

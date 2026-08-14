@@ -7,18 +7,49 @@
     <meta name="theme-color" content="#f7f4ee">
     <title>{{ site.Title }}</title>
     <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
+    <script src="{{ "js/page-builder.js" | relURL }}" defer></script>
   </head>
   <body>
     <header class="site-header">
-      <a class="site-title" href="{{ site.Home.RelPermalink }}" aria-label="ホーム">
-        {{ site.Title }}
-      </a>
+      <a class="site-title" href="{{ site.Home.RelPermalink }}" aria-label="ホーム">{{ site.Title }}</a>
       <nav class="site-nav" aria-label="メインナビゲーション">
         <a href="{{ "resources/" | relURL }}">リソース</a>
         <a href="{{ "colors/" | relURL }}">カラーコード</a>
       </nav>
     </header>
 
-    <main class="home" aria-label="メインコンテンツ"></main>
+    <main class="builder-page">
+      <div class="builder-heading">
+        <p class="eyebrow">Game screen builder</p>
+        <h1>ゲーム画面をつくる</h1>
+        <p>パーツを組み合わせて、ゲーム画面の外観をPNGに書き出せます。</p>
+      </div>
+
+      <div class="screen-builder" id="screen-builder">
+        <section class="builder-controls" aria-label="画面設定">
+          <div class="builder-size-fields">
+            <label>幅 <input id="canvas-width" type="number" min="240" max="2160" step="1" value="540"> px</label>
+            <label>高さ <input id="canvas-height" type="number" min="320" max="3840" step="1" value="960"> px</label>
+          </div>
+
+          <div class="builder-actions">
+            <button type="button" id="add-part">＋ パーツを追加</button>
+            <button type="button" class="download-button" id="download-png">PNGをダウンロード</button>
+          </div>
+
+          <div class="part-editor-list" id="part-editor-list"></div>
+        </section>
+
+        <section class="builder-preview" aria-label="画面プレビュー">
+          <div class="canvas-frame">
+            <canvas id="game-screen" width="540" height="960">ゲーム画面のプレビュー</canvas>
+          </div>
+          <p id="canvas-size-label">540 × 960 px</p>
+        </section>
+      </div>
+    </main>
+
+    <script type="application/json" id="builder-palette">{{ index hugo.Data.generated.resources.ui 0 | jsonify | safeHTML }}</script>
+    <script type="application/json" id="builder-icons">{{ hugo.Data.generated.icons | jsonify | safeHTML }}</script>
   </body>
 </html>
