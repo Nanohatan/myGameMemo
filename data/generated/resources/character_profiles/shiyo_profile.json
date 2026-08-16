@@ -1,0 +1,20 @@
+{
+  "_source": "shiyo_profile.tres",
+  "script": "ExtResource(\"1\")",
+  "RealName": "井戸村 紫葉",
+  "Role": "LEADER",
+  "SkillNames": "Array[String]([\"統制指令\", \"境界戦術解析\", \"管理局式指揮術\"])",
+  "SkillDescriptions": "Array[String]([\"味方全体の攻撃効率を15%上昇\", \"敵全体の防御効率を10%低下\", \"チームの最大体力を8%上昇\"])",
+  "Affiliation": "3RD RESEARCH UNIT",
+  "Position": "FIELD COMMANDER",
+  "Birthday": "OCTOBER 2",
+  "Height": "183cm",
+  "Origin": "JAPAN",
+  "Profile": "複雑な収容作戦でも統制を維持する冷静な現場指揮官。",
+  "CodenameOrigin": "SHIYO――『止揚』。相反する現象を制御下で統合する戦術思想から。",
+  "PublicBackground": "複数の収容事故で部隊を生還させた現場指揮官。冷静な判断と即応力を評価され、第3研究部隊の指揮を任されている。",
+  "ClassifiedBackground": "最初の配属部隊は記録上『全員帰還』とされているが、帰還者名簿に存在しない隊員が一名写った作戦写真が残る。SHIYOはその人物について黙秘を続けている。",
+  "RandomLines": "Array[String]([\"装備の点検は済ませたか。\", \"次の指示があるまで待機だ。\", \"焦る必要はない。状況を見極めろ。\"])",
+  "MissionLines": "Array[String]([\"予定経路を維持する。\", \"現場は私が統制する。\", \"異常反応を確認。警戒を続けろ。\"])",
+  "EventLines": "Array[String]([\"特別命令を確認した。\", \"通常手順は通用しないと思え。\"])"
+}

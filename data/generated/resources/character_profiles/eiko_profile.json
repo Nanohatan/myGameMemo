@@ -1,0 +1,20 @@
+{
+  "_source": "eiko_profile.tres",
+  "script": "ExtResource(\"1\")",
+  "RealName": "影森 栄子",
+  "Role": "RESEARCHER",
+  "SkillNames": "Array[String]([\"現実干渉値校正\", \"特異領域実地調査\", \"緊急収容支援\"])",
+  "SkillDescriptions": "Array[String]([\"味方のRIV変動を安定化する\", \"未知対象に対する解析精度を上昇\", \"収容作戦中にチームの状態を回復する\"])",
+  "Affiliation": "PHENOMENA RESEARCH SECTION",
+  "Position": "FIELD RESEARCHER",
+  "Birthday": "JULY 8",
+  "Height": "156cm",
+  "Origin": "EAST OBSERVATION DISTRICT",
+  "Profile": "不安定な現実干渉値の測定を専門とする快活な現地研究員。",
+  "CodenameOrigin": "EIKO――『影光』。観測不能領域に残る光学残像の研究名から。",
+  "PublicBackground": "不安定な現実干渉値の現地測定を専門とする研究員。明るい態度で部隊の緊張を和らげる一方、観測時には極端な集中状態へ入る。",
+  "ClassifiedBackground": "採用以前の学籍記録は存在するが、同期間の写真すべてで顔だけが露光している。本人は単なる撮影事故だと主張している。",
+  "RandomLines": "Array[String]([\"測定器、今日も絶好調です！\", \"休憩も立派な業務ですよ。\", \"面白い反応が取れそうですね。\"])",
+  "MissionLines": "Array[String]([\"観測値、記録を開始します。\", \"先行測定は私に任せてください！\", \"RIV変動、許容範囲内です。\"])",
+  "EventLines": "Array[String]([\"限定観測、腕が鳴りますね！\", \"特異反応を見逃さないでください。\"])"
+}

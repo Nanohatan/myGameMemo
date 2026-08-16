@@ -1,0 +1,20 @@
+{
+  "_source": "eiko_resonance_blade.tres",
+  "script": "ExtResource(\"1\")",
+  "DisplayName": "境界共鳴刃・乙型",
+  "EquipmentId": "WP-002-EK",
+  "Slot": 0,
+  "Level": 24,
+  "Enhancement": 2,
+  "Icon": {
+    "reference": "ExtResource(\"2\")",
+    "type": "Texture2D",
+    "uid": "",
+    "path": "Asset/Icons/Equipment/equipment_weapon.svg",
+    "id": "2"
+  },
+  "RivBonus": 96,
+  "AttackBonus": 124,
+  "DefenseBonus": 12,
+  "SupportBonus": 18
+}

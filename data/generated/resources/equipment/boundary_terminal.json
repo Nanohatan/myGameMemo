@@ -1,0 +1,18 @@
+{
+  "_source": "boundary_terminal.tres",
+  "script": "ExtResource(\"1\")",
+  "DisplayName": "携帯式境界観測端末",
+  "EquipmentId": "DV-001",
+  "Slot": 2,
+  "Level": 30,
+  "Enhancement": 5,
+  "Icon": {
+    "reference": "ExtResource(\"2\")",
+    "type": "Texture2D",
+    "uid": "uid://coi4m04s52byl",
+    "path": "Asset/Icons/Equipment/equipment_device.svg",
+    "id": "2"
+  },
+  "RivBonus": 100,
+  "SupportBonus": 80
+}

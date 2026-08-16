@@ -1,0 +1,25 @@
+{
+  "_source": "y_origin.tres",
+  "script": "ExtResource(\"1\")",
+  "DisplayName": "Y",
+  "OriginCode": "ORIGIN-Y",
+  "Rarity": 4,
+  "Portrait": {
+    "reference": "ExtResource(\"2\")",
+    "type": "Texture2D",
+    "uid": "uid://c6l7bk6aqsbqp",
+    "path": "Asset/Character/11_wai.png",
+    "id": "2"
+  },
+  "PortraitRegion": "Rect2(0.12, 0, 0.76, 0.72)",
+  "UnlockLine": "……わたしを起こしたのは、あなた？　識別名はY。それだけ覚えてる。",
+  "CloneTemplate": "ExtResource(\"3\")",
+  "ManufactureCreditCost": 2400,
+  "Health": 128,
+  "Attack": 910,
+  "Defense": 720,
+  "Mobility": 5,
+  "Support": 740,
+  "Observation": 880,
+  "Intellect": 820
+}

@@ -2,3 +2,5 @@
 /.hugo_build.lock
 _game
 .venv/
+__pycache__/
+*.py[cod]

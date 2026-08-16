@@ -1,0 +1,5 @@
+{
+  "_source": "active_formation.tres",
+  "script": "ExtResource(\"1_script\")",
+  "Members": "Array[Resource]([ExtResource(\"2_shiyo\"), ExtResource(\"3_nie\")])"
+}

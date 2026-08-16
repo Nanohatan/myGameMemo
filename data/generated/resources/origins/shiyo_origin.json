@@ -1,0 +1,25 @@
+{
+  "_source": "shiyo_origin.tres",
+  "script": "ExtResource(\"1\")",
+  "DisplayName": "SHIYO",
+  "OriginCode": "ORIGIN-SHIYO",
+  "Rarity": 4,
+  "Portrait": {
+    "reference": "ExtResource(\"2\")",
+    "type": "Texture2D",
+    "uid": "uid://b6mpmbxe0kamh",
+    "path": "Asset/Character/01_shiyo.png",
+    "id": "2"
+  },
+  "PortraitRegion": "Rect2(0.18, 0, 0.64, 0.68)",
+  "UnlockLine": "境界局所属、SHIYO。これよりあなたの指揮下に入ります。",
+  "CloneTemplate": "ExtResource(\"3\")",
+  "ManufactureCreditCost": 2000,
+  "Health": 145,
+  "Attack": 845,
+  "Defense": 795,
+  "Mobility": 4,
+  "Support": 620,
+  "Observation": 780,
+  "Intellect": 700
+}

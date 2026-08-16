@@ -1,0 +1,18 @@
+{
+  "_source": "research_coat.tres",
+  "script": "ExtResource(\"1\")",
+  "DisplayName": "白層観測研究衣",
+  "EquipmentId": "AR-002",
+  "Slot": 1,
+  "Level": 28,
+  "Enhancement": 4,
+  "Icon": {
+    "reference": "ExtResource(\"2\")",
+    "type": "Texture2D",
+    "uid": "uid://16s0ajonqvec",
+    "path": "Asset/Icons/Equipment/equipment_armor.svg",
+    "id": "2"
+  },
+  "DefenseBonus": 90,
+  "SupportBonus": 120
+}

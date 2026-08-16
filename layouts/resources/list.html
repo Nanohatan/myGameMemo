@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="{{ .Description }}">
+    <meta name="description" content="{{ .Description | default (printf "%s のリソース一覧" .Title) }}">
     <meta name="theme-color" content="#f7f4ee">
     <title>{{ .Title }} | {{ site.Title }}</title>
     <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
@@ -12,29 +12,38 @@
     <header class="site-header">
       <a class="site-title" href="{{ site.Home.RelPermalink }}">{{ site.Title }}</a>
       <nav class="site-nav" aria-label="メインナビゲーション">
-        <a href="{{ .RelPermalink }}" aria-current="page">リソース</a>
+        <a href="{{ (site.GetPage "/resources").RelPermalink }}" aria-current="page">リソース</a>
       </nav>
     </header>
 
     <main class="resource-page">
+      {{ with .Parent }}{{ if ne .Kind "home" }}
+        <p class="back-link"><a href="{{ .RelPermalink }}">← {{ .Title }}</a></p>
+      {{ end }}{{ end }}
       <div class="page-heading">
         <p class="eyebrow">Resource docs</p>
         <h1>{{ .Title }}</h1>
-        <p>{{ .Description }}</p>
+        <p>{{ .Description | default "ディレクトリ内のリソース一覧" }}</p>
       </div>
 
       <ul class="resource-index" role="list">
-        {{ range .Pages.ByTitle }}
-          {{ $records := index hugo.Data.generated.resources .Params.resource_key }}
+        {{ range .Sections.ByTitle }}
           <li>
             <a href="{{ .RelPermalink }}">
-              <span>
-                <strong>{{ .Title }}</strong>
-                <code>{{ .Params.resource_key }}.json</code>
-              </span>
-              <span class="record-count">{{ len $records }} records</span>
+              <span><strong>{{ .Title }}</strong><code>{{ .Path }}/</code></span>
+              <span class="record-count">{{ len .RegularPagesRecursive }} resources</span>
             </a>
           </li>
+        {{ end }}
+        {{ range .RegularPages.ByTitle }}
+          <li>
+            <a href="{{ .RelPermalink }}">
+              <span><strong>{{ .Title }}</strong><code>{{ .Params.resource_json }}</code></span>
+              <span class="record-count">1 resource</span>
+            </a>
+          </li>
+        {{ else }}
+          {{ if not .Sections }}<li class="empty-state">このディレクトリにリソースはありません。</li>{{ end }}
         {{ end }}
       </ul>
     </main>

@@ -1,0 +1,19 @@
+{
+  "_source": "nie_profile.tres",
+  "script": "ExtResource(\"1\")",
+  "Role": "ANALYST",
+  "SkillNames": "Array[String]([\"境界変動解析\", \"白羊干渉障壁\", \"共鳴位相観測\"])",
+  "SkillDescriptions": "Array[String]([\"対象のRIV変動を高精度で解析する\", \"味方全体が受ける現実干渉を一定時間軽減\", \"未知対象の収容適性を可視化する\"])",
+  "Affiliation": "BOUNDARY ANALYSIS LAB",
+  "Position": "SPECIAL ANALYST",
+  "Birthday": "MARCH 15",
+  "Height": "152cm",
+  "Origin": "WHITE-LAYER DISTRICT",
+  "Profile": "現実境界の揺らぎを感知できる特別分析官。",
+  "CodenameOrigin": "NIE――『贄』。旧収容儀礼における役割名に由来する。",
+  "PublicBackground": "現実境界の微細な揺らぎを感知する特別分析官。白層地区の崩壊事案で唯一確認された生存者として保護され、以後は境界分析局の監督下に置かれている。本人は保護以前の記憶を断片的にしか保持していない。",
+  "ClassifiedBackground": "保護以前、NIEは白層地区の共同体で『境界を鎮めるための贄』として隔離されていた。定期的に現実干渉現象へ曝露されていた形跡があり、その結果として異常な観測能力を獲得した可能性が高い。救出記録では、崩壊の中心にいた彼女だけが無傷だった。コードネームは本人の希望ではなく、回収文書に繰り返し記されていた呼称を組織が転用したもの。本人への開示は禁止されている。",
+  "RandomLines": "Array[String]([\"……境界が、少し揺れてる。\", \"ここは静か。嫌いじゃないよ。\", \"わたしの名前、気に入ってるの。\"])",
+  "MissionLines": "Array[String]([\"向こう側から、音がする。\", \"順路は合ってる。たぶん。\", \"この反応……前にも見た。\"])",
+  "EventLines": "Array[String]([\"今日は境界が近すぎる。\", \"呼ばれてる気がする……。\"])"
+}

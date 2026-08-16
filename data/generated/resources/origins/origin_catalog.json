@@ -1,0 +1,5 @@
+{
+  "_source": "origin_catalog.tres",
+  "script": "ExtResource(\"1\")",
+  "Origins": "Array[ExtResource(\"1_nwtlb\")]([ExtResource(\"2\"), ExtResource(\"3\"), ExtResource(\"5\"), ExtResource(\"4\")])"
+}

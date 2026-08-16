@@ -1,0 +1,16 @@
+{
+  "_source": "clone_blueprint.tres",
+  "script": "ExtResource(\"1\")",
+  "ItemId": "clone_blueprint_1",
+  "DisplayName": "★2 設計書",
+  "Description": "培養棟で使用するクローン設計書",
+  "Price": 600,
+  "PurchaseLimit": 2,
+  "Icon": {
+    "reference": "ExtResource(\"2\")",
+    "type": "Texture2D",
+    "uid": "",
+    "path": "Asset/Icons/Shop/shop_blueprint.svg",
+    "id": "2"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "_source": "resonance_blade.tres",
+  "script": "ExtResource(\"1\")",
+  "DisplayName": "境界共鳴刃",
+  "EquipmentId": "WP-002",
+  "Slot": 0,
+  "Level": 32,
+  "Enhancement": 5,
+  "Icon": {
+    "reference": "ExtResource(\"2\")",
+    "type": "Texture2D",
+    "uid": "uid://btdkt4gwcyg13",
+    "path": "Asset/Icons/Equipment/equipment_weapon.svg",
+    "id": "2"
+  },
+  "RivBonus": 150,
+  "AttackBonus": 130
+}

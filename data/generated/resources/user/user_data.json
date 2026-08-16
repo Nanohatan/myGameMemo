@@ -1,0 +1,10 @@
+{
+  "_source": "user_data.tres",
+  "script": "ExtResource(\"1_script\")",
+  "ActiveFormation": "ExtResource(\"2_formation\")",
+  "Formations": "Array[ExtResource(\"6_crf3v\")]([ExtResource(\"2_formation\"), ExtResource(\"6_formation2\"), ExtResource(\"7_formation3\")])",
+  "UnlockedOriginCodes": "Array[String]([\"ORIGIN-NIE\", \"ORIGIN-SHIYO\", \"ORIGIN-EIKO\"])",
+  "OwnedCloneOriginCodes": "Array[String]([\"ORIGIN-NIE\", \"ORIGIN-SHIYO\", \"ORIGIN-EIKO\"])",
+  "GeneratedClones": "Array[ExtResource(\"5_bd0ne\")]([ExtResource(\"8_nie_clone\"), ExtResource(\"9_shiyo_clone\"), ExtResource(\"10_eiko_clone\")])",
+  "DailyMissions": "Array[ExtResource(\"2_qysxg\")]([ExtResource(\"4_daily\"), ExtResource(\"3_daily\")])"
+}

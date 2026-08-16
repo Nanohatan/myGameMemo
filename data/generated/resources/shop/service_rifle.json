@@ -1,0 +1,18 @@
+{
+  "_source": "service_rifle.tres",
+  "script": "ExtResource(\"1\")",
+  "ItemId": "service_rifle",
+  "DisplayName": "境界局制式小銃",
+  "Description": "標準規格の実働部隊用主武装",
+  "Price": 1200,
+  "PurchaseLimit": 1,
+  "Icon": {
+    "reference": "ExtResource(\"2\")",
+    "type": "Texture2D",
+    "uid": "",
+    "path": "Asset/Icons/Equipment/equipment_weapon.svg",
+    "id": "2"
+  },
+  "IsEquipment": true,
+  "Enhancement": 3
+}

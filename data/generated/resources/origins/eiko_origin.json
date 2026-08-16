@@ -1,0 +1,25 @@
+{
+  "_source": "eiko_origin.tres",
+  "script": "ExtResource(\"1\")",
+  "DisplayName": "EIKO",
+  "OriginCode": "ORIGIN-EIKO",
+  "Rarity": 4,
+  "Portrait": {
+    "reference": "ExtResource(\"2\")",
+    "type": "Texture2D",
+    "uid": "",
+    "path": "Asset/Character/03_Eiko.png",
+    "id": "2"
+  },
+  "PortraitRegion": "Rect2(0.08, 0, 0.84, 0.7)",
+  "UnlockLine": "観測光、安定。EIKO、接続しました。",
+  "CloneTemplate": "ExtResource(\"3\")",
+  "ManufactureCreditCost": 1800,
+  "Health": 100,
+  "Attack": 825,
+  "Defense": 740,
+  "Mobility": 3,
+  "Support": 965,
+  "Observation": 920,
+  "Intellect": 885
+}

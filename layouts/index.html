@@ -49,7 +49,7 @@
       </div>
     </main>
 
-    <script type="application/json" id="builder-palette">{{ index hugo.Data.generated.resources.ui 0 | jsonify | safeHTML }}</script>
+    <script type="application/json" id="builder-palette">{{ hugo.Data.generated.resources.ui.ui_palette | jsonify | safeHTML }}</script>
     <script type="application/json" id="builder-icons">{{ hugo.Data.generated.icons | jsonify | safeHTML }}</script>
   </body>
 </html>

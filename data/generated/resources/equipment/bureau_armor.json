@@ -1,0 +1,17 @@
+{
+  "_source": "bureau_armor.tres",
+  "script": "ExtResource(\"1\")",
+  "DisplayName": "管理局式耐干渉防護服",
+  "EquipmentId": "AR-001",
+  "Slot": 1,
+  "Level": 35,
+  "Enhancement": 6,
+  "Icon": {
+    "reference": "ExtResource(\"2\")",
+    "type": "Texture2D",
+    "uid": "uid://16s0ajonqvec",
+    "path": "Asset/Icons/Equipment/equipment_armor.svg",
+    "id": "2"
+  },
+  "DefenseBonus": 190
+}

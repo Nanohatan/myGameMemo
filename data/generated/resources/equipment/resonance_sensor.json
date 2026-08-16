@@ -1,0 +1,18 @@
+{
+  "_source": "resonance_sensor.tres",
+  "script": "ExtResource(\"1\")",
+  "DisplayName": "現実共鳴感応器",
+  "EquipmentId": "DV-002",
+  "Slot": 2,
+  "Level": 34,
+  "Enhancement": 6,
+  "Icon": {
+    "reference": "ExtResource(\"2\")",
+    "type": "Texture2D",
+    "uid": "uid://coi4m04s52byl",
+    "path": "Asset/Icons/Equipment/equipment_device.svg",
+    "id": "2"
+  },
+  "RivBonus": 180,
+  "SupportBonus": 140
+}

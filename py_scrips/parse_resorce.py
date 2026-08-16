@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Convert Godot ``.tres`` resource properties to grouped JSON files.
+"""Convert each Godot resource file to one JSON file.
 
-Only properties in the ``[resource]`` section are exported. JSON-native Godot
+Properties in the ``[resource]`` section and embedded ``[sub_resource]``
+sections are exported. JSON-native Godot
 values (strings, integers, floats, booleans and null) are converted to their
 native JSON representation. Direct references to Texture2D external resources
 are expanded with their type, uid, path and id. Other Godot expressions, such
@@ -19,8 +20,9 @@ from pathlib import Path
 from typing import Any, Iterable
 
 
-ASSIGNMENT_RE = re.compile(r"^([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*)$")
+ASSIGNMENT_RE = re.compile(r"^([^\s=]+)\s*=\s*(.*)$")
 EXT_RESOURCE_REF_RE = re.compile(r'^ExtResource\("([^"]+)"\)$')
+SUB_RESOURCE_REF_RE = re.compile(r'^SubResource\("([^"]+)"\)$')
 HEADER_ATTRIBUTE_RE = re.compile(r'([A-Za-z_][A-Za-z0-9_]*)="([^"]*)"')
 INTEGER_RE = re.compile(r"^[+-]?\d+$")
 FLOAT_RE = re.compile(
@@ -31,6 +33,11 @@ FLOAT_RE = re.compile(
 def parse_value(raw_value: str) -> Any:
     """Convert a simple Godot value and preserve complex expressions."""
     value = raw_value.strip()
+    if len(value) >= 3 and value.startswith('&"') and value.endswith('"'):
+        try:
+            return ast.literal_eval(value[1:])
+        except (SyntaxError, ValueError):
+            return value[2:-1]
     if len(value) >= 2 and value[0] == value[-1] == '"':
         try:
             return ast.literal_eval(value)
@@ -59,6 +66,14 @@ def parse_ext_resource_header(line: str) -> dict[str, str] | None:
     return attributes if "id" in attributes else None
 
 
+def parse_section_header(line: str) -> tuple[str, dict[str, str]] | None:
+    stripped = line.strip()
+    if not stripped.startswith("[") or not stripped.endswith("]"):
+        return None
+    section_type = stripped[1:-1].split(maxsplit=1)[0]
+    return section_type, dict(HEADER_ATTRIBUTE_RE.findall(stripped))
+
+
 def resolve_texture_reference(
     value: Any, ext_resources: dict[str, dict[str, str]]
 ) -> Any:
@@ -78,6 +93,28 @@ def resolve_texture_reference(
         "path": resource.get("path", "").removeprefix("res://"),
         "id": resource["id"],
     }
+
+
+def nest_theme_properties(properties: dict[str, Any]) -> dict[str, Any]:
+    """Turn ``Button/styles/normal`` keys into a browsable nested mapping."""
+    nested: dict[str, Any] = {}
+    for key, value in properties.items():
+        target = nested
+        parts = key.split("/")
+        for part in parts[:-1]:
+            target = target.setdefault(part, {})
+        target[parts[-1]] = value
+    return nested
+
+
+def resolve_sub_resource(value: Any, sub_resources: dict[str, dict[str, Any]]) -> Any:
+    if not isinstance(value, str):
+        return value
+    match = SUB_RESOURCE_REF_RE.fullmatch(value)
+    if not match or match.group(1) not in sub_resources:
+        return value
+    resource = sub_resources[match.group(1)]
+    return {"reference": value, **resource}
 
 
 def _is_complete_expression(value: str) -> bool:
@@ -109,7 +146,9 @@ def _is_complete_expression(value: str) -> bool:
 def parse_tres(path: Path) -> dict[str, Any]:
     """Parse the exported properties from one Godot resource file."""
     result: dict[str, Any] = {"_source": path.name}
-    in_resource = False
+    current_properties: dict[str, Any] | None = None
+    resource_properties: dict[str, Any] = {}
+    sub_resources: dict[str, dict[str, Any]] = {}
     pending_key: str | None = None
     pending_parts: list[str] = []
     ext_resources: dict[str, dict[str, str]] = {}
@@ -119,17 +158,30 @@ def parse_tres(path: Path) -> dict[str, Any]:
         ext_resource = parse_ext_resource_header(stripped)
         if ext_resource is not None:
             ext_resources[ext_resource["id"]] = ext_resource
-        if stripped.startswith("[") and stripped.endswith("]"):
-            in_resource = stripped == "[resource]"
+        section = parse_section_header(stripped)
+        if section is not None:
+            section_type, attributes = section
+            if section_type == "resource":
+                current_properties = resource_properties
+            elif section_type == "sub_resource" and "id" in attributes:
+                sub_resource = {
+                    "id": attributes["id"],
+                    "type": attributes.get("type", ""),
+                    "properties": {},
+                }
+                sub_resources[attributes["id"]] = sub_resource
+                current_properties = sub_resource["properties"]
+            else:
+                current_properties = None
             continue
-        if not in_resource or not stripped or stripped.startswith(";"):
+        if current_properties is None or not stripped or stripped.startswith(";"):
             continue
 
         if pending_key is not None:
             pending_parts.append(stripped)
             combined = "\n".join(pending_parts)
             if _is_complete_expression(combined):
-                result[pending_key] = resolve_texture_reference(
+                current_properties[pending_key] = resolve_texture_reference(
                     parse_value(combined), ext_resources
                 )
                 pending_key = None
@@ -141,7 +193,7 @@ def parse_tres(path: Path) -> dict[str, Any]:
             continue
         key, raw_value = match.groups()
         if _is_complete_expression(raw_value):
-            result[key] = resolve_texture_reference(
+            current_properties[key] = resolve_texture_reference(
                 parse_value(raw_value), ext_resources
             )
         else:
@@ -150,12 +202,25 @@ def parse_tres(path: Path) -> dict[str, Any]:
 
     if pending_key is not None:
         raise ValueError(f"Unclosed value in {path} for {pending_key!r}")
+    resolved_properties = {
+        key: resolve_sub_resource(value, sub_resources)
+        for key, value in resource_properties.items()
+    }
+    result.update(resolved_properties)
+    if sub_resources:
+        result["_sub_resources"] = sub_resources
+    if any("/" in key for key in resolved_properties):
+        result["theme_types"] = nest_theme_properties(resolved_properties)
     return result
 
 
 def iter_resource_files(source_root: Path) -> Iterable[Path]:
     return sorted(
-        (path for path in source_root.rglob("*.tres") if path.is_file()),
+        (
+            path
+            for path in source_root.rglob("*")
+            if path.is_file() and path.suffix.casefold() in {".tres", ".res"}
+        ),
         key=lambda path: path.relative_to(source_root).as_posix().casefold(),
     )
 
@@ -166,19 +231,17 @@ def to_snake_case(name: str) -> str:
     return re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", first_pass).lower()
 
 
-def group_resource_files(source_root: Path) -> dict[str, list[Path]]:
-    """Group files by their first directory below Resources."""
-    groups: dict[str, list[Path]] = {}
-    for path in iter_resource_files(source_root):
-        relative = path.relative_to(source_root)
-        group_name = relative.parts[0] if len(relative.parts) > 1 else "resources"
-        groups.setdefault(to_snake_case(group_name), []).append(path)
-    return groups
+def output_path_for_resource(path: Path, source_root: Path, output_root: Path) -> Path:
+    """Return a JSON path that mirrors the resource's relative directory."""
+    relative = path.relative_to(source_root)
+    directory_parts = [to_snake_case(part) for part in relative.parts[:-1]]
+    filename = f"{to_snake_case(relative.stem)}.json"
+    return output_root.joinpath(*directory_parts, filename)
 
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Parse Godot .tres files below a Resources directory into JSON."
+        description="Parse each Godot .tres/.res file below Resources into one JSON file."
     )
     parser.add_argument(
         "source",
@@ -204,19 +267,28 @@ def main() -> int:
     if not source_root.is_dir():
         raise SystemExit(f"Resources directory not found: {source_root}")
 
-    args.output_dir.mkdir(parents=True, exist_ok=True)
-    total = 0
-    groups = group_resource_files(source_root)
-    for group_name, files in groups.items():
-        records = [parse_tres(path) for path in files]
-        output_path = args.output_dir / f"{group_name}.json"
+    resource_files = list(iter_resource_files(source_root))
+    expected_outputs: set[Path] = set()
+    for path in resource_files:
+        output_path = output_path_for_resource(path, source_root, args.output_dir)
+        output_path.parent.mkdir(parents=True, exist_ok=True)
         output_path.write_text(
-            json.dumps(records, ensure_ascii=False, indent=2) + "\n",
+            json.dumps(parse_tres(path), ensure_ascii=False, indent=2) + "\n",
             encoding="utf-8",
         )
-        total += len(records)
-        print(f"{group_name}: {len(records)} files -> {output_path}")
-    print(f"Parsed {total} files into {len(groups)} JSON files")
+        expected_outputs.add(output_path.resolve())
+        print(f"{path.relative_to(source_root)} -> {output_path}")
+
+    if args.output_dir.is_dir():
+        for output_path in args.output_dir.rglob("*.json"):
+            if output_path.resolve() not in expected_outputs:
+                output_path.unlink()
+                print(f"Removed stale JSON: {output_path}")
+        for directory in sorted(args.output_dir.rglob("*"), reverse=True):
+            if directory.is_dir() and not any(directory.iterdir()):
+                directory.rmdir()
+
+    print(f"Parsed {len(resource_files)} resource files into {len(expected_outputs)} JSON files")
     return 0
 
 

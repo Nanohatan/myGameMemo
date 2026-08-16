@@ -1,0 +1,18 @@
+{
+  "_source": "service_rifle.tres",
+  "script": "ExtResource(\"1\")",
+  "DisplayName": "管理局制式干渉銃",
+  "EquipmentId": "WP-001",
+  "Slot": 0,
+  "Level": 40,
+  "Enhancement": 7,
+  "Icon": {
+    "reference": "ExtResource(\"2\")",
+    "type": "Texture2D",
+    "uid": "uid://btdkt4gwcyg13",
+    "path": "Asset/Icons/Equipment/equipment_weapon.svg",
+    "id": "2"
+  },
+  "RivBonus": 120,
+  "AttackBonus": 180
+}

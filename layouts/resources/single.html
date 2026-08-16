@@ -3,87 +3,86 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="{{ .Params.resource_key }}.jsonのリソースドキュメント">
+    <meta name="description" content="{{ .Params.resource_json }} のリソースドキュメント">
     <meta name="theme-color" content="#f7f4ee">
     <title>{{ .Title }} | {{ site.Title }}</title>
     <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
+    {{ if eq .Params.resource_json "ui/game_theme.json" }}<script src="{{ "js/theme-preview.js" | relURL }}" defer></script>{{ end }}
   </head>
   <body>
     <header class="site-header">
       <a class="site-title" href="{{ site.Home.RelPermalink }}">{{ site.Title }}</a>
       <nav class="site-nav" aria-label="メインナビゲーション">
-        <a href="{{ .Parent.RelPermalink }}">リソース</a>
+        <a href="{{ .Parent.RelPermalink }}">{{ .Parent.Title }}</a>
       </nav>
     </header>
 
-    {{ $records := index hugo.Data.generated.resources .Params.resource_key }}
+    {{ $record := hugo.Data.generated.resources }}
+    {{ range .Params.resource_data_path }}
+      {{ $record = index $record . }}
+    {{ end }}
     <main class="resource-page">
-      <p class="back-link"><a href="{{ .Parent.RelPermalink }}">← リソース一覧</a></p>
+      <p class="back-link"><a href="{{ .Parent.RelPermalink }}">← {{ .Parent.Title }} 一覧</a></p>
       <div class="page-heading resource-heading">
         <p class="eyebrow">Resource docs</p>
         <h1>{{ .Title }}</h1>
-        <p><code>data/generated/resources/{{ .Params.resource_key }}.json</code></p>
+        <p><code>data/generated/resources/{{ .Params.resource_json }}</code></p>
       </div>
 
-      <p class="resource-summary">{{ len $records }} records</p>
+      {{ with index $record "theme_types" }}
+        <section class="theme-documentation" aria-labelledby="theme-components-title">
+          <div class="theme-section-heading">
+            <p class="eyebrow">Theme components</p>
+            <h2 id="theme-components-title">定義されているUIパーツ</h2>
+            <p>Godot Theme の色・フォントサイズ・StyleBoxを、状態ごとに再現しています。</p>
+          </div>
+          <div class="theme-preview-grid" id="theme-preview-grid"></div>
+          <script type="application/json" id="theme-preview-data">{{ . | jsonify | safeHTML }}</script>
+        </section>
+      {{ end }}
 
-      <div class="record-list">
-        {{ range $index, $record := $records }}
-          <article class="record-card">
-            <header>
-              <span class="record-number">{{ printf "%02d" (add $index 1) }}</span>
-              <h2>{{ with index $record "_source" }}{{ . }}{{ else }}Record {{ add $index 1 }}{{ end }}</h2>
-            </header>
-            <dl class="record-fields">
-              {{ range $key, $value := $record }}
-                {{ if ne $key "_source" }}
-                  {{ $displayValue := printf "%v" $value }}
-                  {{ $isMap := reflect.IsMap $value }}
-                  {{ $isTexture := and $isMap (eq (index $value "type") "Texture2D") }}
-                  {{ $isLong := gt (len $displayValue) 90 }}
-                  <div class="record-field{{ if $isTexture }} field-media{{ else if $isLong }} field-wide{{ end }}">
-                    <dt>{{ $key }}</dt>
-                    <dd>
-                      {{ if $isTexture }}
-                        <div class="texture-resource">
-                          <figure>
-                            <img src="{{ index $value "path" | relURL }}" alt="{{ $key }}: {{ index $record "_source" }}" loading="lazy">
-                          </figure>
-                          <dl class="resource-reference">
-                            {{ range $resourceKey, $resourceValue := $value }}
-                              <div>
-                                <dt>{{ $resourceKey }}</dt>
-                                <dd><code>{{ $resourceValue }}</code></dd>
-                              </div>
-                            {{ end }}
-                          </dl>
-                        </div>
-                      {{ else if $isMap }}
-                        <dl class="resource-reference">
-                          {{ range $resourceKey, $resourceValue := $value }}
-                            <div>
-                              <dt>{{ $resourceKey }}</dt>
-                              <dd><code>{{ $resourceValue }}</code></dd>
-                            </div>
-                          {{ end }}
-                        </dl>
-                      {{ else if hasPrefix $displayValue "Color(" }}
-                        {{ $channels := split (replaceRE `^Color\((.*)\)$` "$1" $displayValue) ", " }}
-                        <span class="inline-swatch" style="--swatch: color(srgb {{ index $channels 0 }} {{ index $channels 1 }} {{ index $channels 2 }} / {{ index $channels 3 }})" aria-hidden="true"></span>
-                        <code>{{ $displayValue }}</code>
-                      {{ else }}
-                        <code>{{ $displayValue }}</code>
+      {{ if not (index $record "theme_types") }}
+      <article class="record-card resource-detail">
+        <header><h2>{{ index $record "_source" | default .Title }}</h2></header>
+        <dl class="record-fields">
+          {{ range $key, $value := $record }}
+            {{ if ne $key "_source" }}
+              {{ $displayValue := printf "%v" $value }}
+              {{ $isMap := reflect.IsMap $value }}
+              {{ $isTexture := and $isMap (eq (index $value "type") "Texture2D") }}
+              {{ $isLong := gt (len $displayValue) 90 }}
+              <div class="record-field{{ if $isTexture }} field-media{{ else if $isLong }} field-wide{{ end }}">
+                <dt>{{ $key }}</dt>
+                <dd>
+                  {{ if $isTexture }}
+                    <div class="texture-resource">
+                      <figure><img src="{{ index $value "path" | relURL }}" alt="{{ $key }}: {{ index $record "_source" }}" loading="lazy"></figure>
+                      <dl class="resource-reference">
+                        {{ range $resourceKey, $resourceValue := $value }}
+                          <div><dt>{{ $resourceKey }}</dt><dd><code>{{ $resourceValue }}</code></dd></div>
+                        {{ end }}
+                      </dl>
+                    </div>
+                  {{ else if $isMap }}
+                    <dl class="resource-reference">
+                      {{ range $resourceKey, $resourceValue := $value }}
+                        <div><dt>{{ $resourceKey }}</dt><dd><code>{{ $resourceValue }}</code></dd></div>
                       {{ end }}
-                    </dd>
-                  </div>
-                {{ end }}
-              {{ end }}
-            </dl>
-          </article>
-        {{ else }}
-          <p class="empty-state">このJSONにはレコードがありません。</p>
-        {{ end }}
-      </div>
+                    </dl>
+                  {{ else if hasPrefix $displayValue "Color(" }}
+                    {{ $channels := split (replaceRE `^Color\((.*)\)$` "$1" $displayValue) ", " }}
+                    <span class="inline-swatch" style="--swatch: color(srgb {{ index $channels 0 }} {{ index $channels 1 }} {{ index $channels 2 }} / {{ index $channels 3 }})" aria-hidden="true"></span>
+                    <code>{{ $displayValue }}</code>
+                  {{ else }}
+                    <code>{{ $displayValue }}</code>
+                  {{ end }}
+                </dd>
+              </div>
+            {{ end }}
+          {{ end }}
+        </dl>
+      </article>
+      {{ end }}
     </main>
   </body>
 </html>

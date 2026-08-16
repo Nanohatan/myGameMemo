@@ -23,7 +23,7 @@
         <p>{{ .Description }}</p>
       </div>
 
-      {{ with index hugo.Data.generated.resources.ui 0 }}
+      {{ with hugo.Data.generated.resources.ui.ui_palette }}
         <p class="source-note">Source: <code>{{ index . "_source" }}</code></p>
         <ul class="color-grid" role="list">
           {{ range $name, $value := . }}

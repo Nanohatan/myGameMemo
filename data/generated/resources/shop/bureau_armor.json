@@ -1,0 +1,18 @@
+{
+  "_source": "bureau_armor.tres",
+  "script": "ExtResource(\"1\")",
+  "ItemId": "bureau_armor",
+  "DisplayName": "干渉遮断防護衣",
+  "Description": "低強度の現実干渉を軽減する防具",
+  "Price": 980,
+  "PurchaseLimit": 1,
+  "Icon": {
+    "reference": "ExtResource(\"2\")",
+    "type": "Texture2D",
+    "uid": "",
+    "path": "Asset/Icons/Equipment/equipment_armor.svg",
+    "id": "2"
+  },
+  "IsEquipment": true,
+  "Enhancement": 6
+}

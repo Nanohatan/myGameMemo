@@ -1,0 +1,17 @@
+{
+  "_source": "daily_acceleration.tres",
+  "script": "ExtResource(\"1\")",
+  "ItemId": "daily_acceleration",
+  "DisplayName": "1時間加速チケット",
+  "Description": "施設の作業時間を1時間短縮する日次補給品",
+  "Price": 0,
+  "PurchaseLimit": 1,
+  "Icon": {
+    "reference": "ExtResource(\"2\")",
+    "type": "Texture2D",
+    "uid": "",
+    "path": "Asset/Icons/Shop/shop_acceleration.svg",
+    "id": "2"
+  },
+  "IsDaily": true
+}

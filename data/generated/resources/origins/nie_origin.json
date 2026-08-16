@@ -1,0 +1,27 @@
+{
+  "_source": "nie_origin.tres",
+  "script": "ExtResource(\"1\")",
+  "DisplayName": "NIE",
+  "OriginCode": "ORIGIN-NIE",
+  "Rarity": 2,
+  "Portrait": {
+    "reference": "ExtResource(\"2\")",
+    "type": "Texture2D",
+    "uid": "uid://b0hoph0y1jqo8",
+    "path": "Asset/Character/02_Nie.png",
+    "id": "2"
+  },
+  "PortraitRegion": "Rect2(0.08, 0, 0.84, 0.72)",
+  "UnlockLine": "……境界の向こうから、あなたの声が聞こえた。わたしはNIE。",
+  "CloneTemplate": "ExtResource(\"3\")",
+  "ManufactureCreditCost": 1200,
+  "Health": 112,
+  "Attack": 750,
+  "Defense": 840,
+  "Support": 1005,
+  "Observation": 945,
+  "Intellect": 905,
+  "AccumulatedRestorationExp": 24580,
+  "RestorationCount": 7,
+  "CollapsedCloneCount": 6
+}

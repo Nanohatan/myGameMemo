@@ -1,0 +1,20 @@
+{
+  "_source": "eiko_research_coat.tres",
+  "script": "ExtResource(\"1\")",
+  "DisplayName": "白層観測研究衣・改",
+  "EquipmentId": "AR-002-EK",
+  "Slot": 1,
+  "Level": 22,
+  "Enhancement": 1,
+  "Icon": {
+    "reference": "ExtResource(\"2\")",
+    "type": "Texture2D",
+    "uid": "",
+    "path": "Asset/Icons/Equipment/equipment_armor.svg",
+    "id": "2"
+  },
+  "RivBonus": 72,
+  "AttackBonus": 8,
+  "DefenseBonus": 108,
+  "SupportBonus": 35
+}

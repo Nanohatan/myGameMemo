@@ -1,0 +1,12 @@
+{
+  "_source": "daily_shop.tres",
+  "script": "ExtResource(\"1\")",
+  "Title": "ショップで物資を購入",
+  "Description": "ショップで任意の商品を1回購入する",
+  "Current": 0,
+  "Target": 1,
+  "Reward": "クレジット ×1,000",
+  "RewardType": "credits",
+  "RewardAmount": 1000,
+  "RewardClaimed": false
+}

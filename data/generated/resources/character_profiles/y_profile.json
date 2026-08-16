@@ -1,0 +1,18 @@
+{
+  "_source": "y_profile.tres",
+  "script": "ExtResource(\"1\")",
+  "RealName": "Y",
+  "Role": "SPECIAL OPERATOR",
+  "SkillNames": "Array[String]([\"位相切断\", \"残響観測\", \"境界踏破\"])",
+  "SkillDescriptions": "Array[String]([\"対象の位相接続を一時的に切断する\", \"残留した現実干渉の痕跡を追跡する\", \"不安定な境界領域を安全に通過する\"])",
+  "Affiliation": "BOUNDARY OPERATIONS",
+  "Position": "SPECIAL OPERATOR",
+  "Origin": "UNKNOWN",
+  "Profile": "設計図から復元された未登録クローン。",
+  "CodenameOrigin": "Y――回収された設計図に記録されていた識別名。",
+  "PublicBackground": "★4クローン設計図から復元された個体。詳細記録は解析中。",
+  "ClassifiedBackground": "原型情報の大部分が欠損している。識別コードYのみ復元済み。",
+  "RandomLines": "Array[String]([\"わたしを呼んだ？\", \"ここなら、まだ静か。\"])",
+  "MissionLines": "Array[String]([\"境界を確認する。\", \"先に進めるよ。\"])",
+  "EventLines": "Array[String]([\"この反応、設計図にも残っていた。\"])"
+}
